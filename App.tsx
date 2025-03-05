@@ -1,6 +1,7 @@
 import { Platform, StatusBar as StatusBarNative, Image, SafeAreaView, StyleSheet, Text, View, Button, TextInput, InputAccessoryView, Alert, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
+import TitleComponent from './components/TitleComponent';
 
 export default function App() {
   // methods, props, state, hooks, etc.
@@ -39,6 +40,8 @@ export default function App() {
           onChangeText={(text) => setLen(text.length)} />
 
         <Text>Text Length: {len}</Text>
+
+        <TitleComponent />
 
         <StatusBar style="auto" />
       </SafeAreaView>
