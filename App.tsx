@@ -1,13 +1,18 @@
-import { Platform, StatusBar as StatusBarNative, Image, SafeAreaView, StyleSheet, Text, View, Button, TextInput, InputAccessoryView, Alert, Pressable } from 'react-native';
+import { Platform, StatusBar as StatusBarNative, Image, SafeAreaView, StyleSheet, Text, View, Button, TextInput, InputAccessoryView, Alert, Pressable, Modal, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import TitleComponent from './components/TitleComponent';
+import TestModal from './components/TestModal';
+
+// const questions = [
+// ]
 
 export default function App() {
   // methods, props, state, hooks, etc.
 
   // [name, setterName] = useState(initialValue)
   const [darkMode, setDarkMode] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [len, setLen] = useState(0);
 
   const showTitle = () => {
@@ -32,8 +37,6 @@ export default function App() {
             style={styles.image} />
         </Pressable>
 
-        <Button title="Click me" onPress={showTitle} />
-
         <TextInput
           placeholder="Enter your name"
           style={styles.input}
@@ -42,6 +45,9 @@ export default function App() {
         <Text>Text Length: {len}</Text>
 
         <TitleComponent />
+        <Button title="Open Modal" onPress={() => setModalVisible(true)} />
+
+        <TestModal visible={modalVisible} onClose={() => setModalVisible(false)} />
 
         <StatusBar style="auto" />
       </SafeAreaView>
@@ -74,5 +80,5 @@ const styles = StyleSheet.create({
     padding: 6,
     margin: 6,
     borderRadius: 5,
-  }
+  },
 });
