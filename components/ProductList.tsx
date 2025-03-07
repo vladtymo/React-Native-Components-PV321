@@ -1,5 +1,7 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import ProductCard from './ProductCard';
 
 const api = "https://fakestoreapi.com/products";
 
@@ -21,22 +23,32 @@ export default function ProductList() {
     }, []);
 
     const getProducts = async () => {
-        const response = await fetch(api);
-        const data = await response.json();
-        setProducts(data);
+        const response = await axios.get<Product[]>(api);
+        setProducts(response.data);
     }
 
     return (
-        <View>
-            <Text>Product List</Text>
+        <SafeAreaView>
+            <Text style={styles.title}>Product List</Text>
             <FlatList
                 data={products}
                 renderItem={({ item }) => (
-                    <Text>{item.title}</Text>
+                    <ProductCard item={item} />
                 )}
+                initialNumToRender={2}
+                // numColumns={2}
+                // ItemSeparatorComponent={() => (
+                //     <Text>------</Text>
+                // )}
+                keyExtractor={(i) => i.title}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    title: {
+        fontSize: 22,
+        textAlign: "center"
+    }
+})
