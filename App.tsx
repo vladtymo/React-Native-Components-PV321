@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import TitleComponent from './components/TitleComponent';
 import TestModal from './components/TestModal';
+import UserForm from './components/UserForm';
 
 // const questions = [
 // ]
@@ -13,6 +14,7 @@ export default function App() {
   // [name, setterName] = useState(initialValue)
   const [darkMode, setDarkMode] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [formlVisible, setFormVisible] = useState(false);
   const [len, setLen] = useState(0);
 
   const showTitle = () => {
@@ -46,9 +48,10 @@ export default function App() {
 
         <TitleComponent />
         <Button title="Open Modal" onPress={() => setModalVisible(true)} />
+        <Button title="Open Form" onPress={() => setFormVisible(true)} />
 
         <TestModal visible={modalVisible} onClose={() => setModalVisible(false)} />
-
+        <UserForm visible={formlVisible} onClose={() => setFormVisible(false)} />
         <StatusBar style="auto" />
       </SafeAreaView>
     </View>
