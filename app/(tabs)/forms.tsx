@@ -1,14 +1,12 @@
 import { Platform, StatusBar as StatusBarNative, Image, SafeAreaView, StyleSheet, Text, View, Button, TextInput, InputAccessoryView, Alert, Pressable, Modal, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import TestModal from '../components/TestModal';
-import TitleComponent from '../components/TitleComponent';
-import UserForm from '../components/UserForm';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import TestModal from '../../components/TestModal';
+import TitleComponent from '../../components/TitleComponent';
+import UserForm from '../../components/UserForm';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Forms'>;
-
-export default function Forms({ navigation }: Props) {
+export default function Forms() {
     // methods, props, state, hooks, etc.
     const [darkMode, setDarkMode] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
@@ -53,7 +51,7 @@ export default function Forms({ navigation }: Props) {
                 <StatusBar style="auto" />
 
                 <Button title='About' onPress={() => {
-                    navigation.navigate("About", { author: "Vlad Tm" })
+                    // navigation.navigate("About", { author: "Vlad Tm" })
                 }} />
             </SafeAreaView>
         </View>
