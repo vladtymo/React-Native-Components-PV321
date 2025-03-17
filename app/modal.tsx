@@ -3,7 +3,7 @@ import React from 'react'
 
 const ModalScreen = () => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text>Hello Modal Screen!</Text>
         </View>
     )
@@ -11,4 +11,8 @@ const ModalScreen = () => {
 
 export default ModalScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        padding: 20
+    }
+})
