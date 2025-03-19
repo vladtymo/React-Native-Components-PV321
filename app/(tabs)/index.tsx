@@ -1,16 +1,17 @@
-import { Button, FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Button, FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Link } from 'expo-router';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { addItem, getItems } from '../../store/dbUtils';
-import { Item } from '../../store/models';
+import { drizzle } from 'drizzle-orm/expo-sqlite';
+import { useSQLiteContext } from 'expo-sqlite';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+import { Task, tasksTable } from '../../store/schema';
+import * as schema from '../../store/schema';
 
 const Home = () => {
+    // const { success, error } = useMigrations(db, migrations);
+    const db = drizzle(useSQLiteContext(), { schema });
 
-    const [items, setItems] = useState<Item[]>([]);
+    const [items, setItems] = useState<Task[] | null>(null);
     const [text, setText] = useState('');
 
     useEffect(() => {
@@ -18,11 +19,12 @@ const Home = () => {
     }, []);
 
     const addItemHandle = async () => {
-        setItems([...items, await addItem(text)]);
+        await db.insert(tasksTable).values({ text: text });
         await refreshItems();
     }
     const refreshItems = async () => {
-        setItems(await getItems());
+        const users = await db.select().from(tasksTable);
+        setItems(users);
     }
 
     return (
@@ -38,11 +40,13 @@ const Home = () => {
 
             <FlatList
                 data={items}
-                renderItem={({ item }) => <Text>{item.value}</Text>} />
+                renderItem={({ item }) => <Text>{item.text}</Text>}
+                keyExtractor={(x, _) => x.id.toString()}
+            />
 
             <Link href="/modal" asChild>
                 <Pressable>
-                    {({ pressed }) => (
+                    {() => (
                         <Text>Open Modal</Text>
                     )}
                 </Pressable>
