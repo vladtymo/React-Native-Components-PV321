@@ -6,6 +6,8 @@ import migrations from '../drizzle/migrations';
 import { Suspense } from 'react';
 import { ActivityIndicator, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 export const DATABASE_NAME = 'tasks_db';
 
@@ -35,11 +37,13 @@ export default function RootLayout() {
                 databaseName={DATABASE_NAME}
                 options={{ enableChangeListener: true }}
                 useSuspense>
-                <Stack>
-                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                    <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-                    <Stack.Screen name="+not-found" />
-                </Stack>
+                <Provider store={store}>
+                    <Stack>
+                        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+                        <Stack.Screen name="+not-found" />
+                    </Stack>
+                </Provider>
             </SQLiteProvider>
         </Suspense>
     );
