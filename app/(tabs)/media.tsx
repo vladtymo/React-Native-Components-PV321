@@ -85,8 +85,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     imageContainer: {
         flex: 1,
@@ -94,15 +92,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     image: {
-        width: 200,
-        height: 200,
+        flex: 1,
+        objectFit: 'cover',
     },
     message: {
         textAlign: 'center',
         paddingBottom: 10,
     },
     camera: {
-        flex: 1,
+        flex: 2,
     },
     buttonContainer: {
         flex: 1,
