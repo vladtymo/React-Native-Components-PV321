@@ -1,11 +1,19 @@
 import { Button, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Animated, { useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSpring, withTiming } from 'react-native-reanimated';
+import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSpring, withTiming } from 'react-native-reanimated';
 
 export default function Animations() {
     const width = useSharedValue(100);
     const radius = useSharedValue(0);
+
+    const blockAnimatedStyle = useAnimatedStyle(() => ({
+        backgroundColor: interpolateColor(
+            width.value,
+            [100, 300],
+            ['violet', 'lightblue']
+        ),
+    }));
 
     const animatedStyles = useAnimatedStyle(() => ({
         borderRadius: `${radius.value}%`,
@@ -49,11 +57,11 @@ export default function Animations() {
             <Text style={styles.text}>Animations</Text>
             <Button title='Start' onPress={handleStart} />
             <Animated.View
-                style={{
+                style={[{
                     width: width,
                     height: 100,
                     backgroundColor: 'violet',
-                }}
+                }, blockAnimatedStyle]}
             />
             <Pressable onPress={handleRotate}>
                 <Animated.View
