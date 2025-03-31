@@ -20,6 +20,13 @@ export default function TabLayout() {
     return (
         <Tabs>
             <Tabs.Screen
+                name="animations"
+                options={{
+                    title: "Animations",
+                    tabBarIcon: ({ color }) => <TabBarIcon name="circle" color={color} />,
+                }}
+            />
+            <Tabs.Screen
                 name="index"
                 options={{
                     title: title ?? "Home",

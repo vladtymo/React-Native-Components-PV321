@@ -32,7 +32,8 @@
     "react-native-screens": "~4.4.0",
     "react-redux": "^9.2.0",
     "expo-image-picker": "~16.0.6",
-    "expo-camera": "~16.0.18"
+    "expo-camera": "~16.0.18",
+    "react-native-reanimated": "~3.16.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
