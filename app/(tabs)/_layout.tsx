@@ -27,6 +27,13 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
+                name="gestures"
+                options={{
+                    title: "Gestures",
+                    tabBarIcon: ({ color }) => <TabBarIcon name="hand-lizard-o" color={color} />,
+                }}
+            />
+            <Tabs.Screen
                 name="index"
                 options={{
                     title: title ?? "Home",

@@ -8,6 +8,7 @@ import { ActivityIndicator, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export const DATABASE_NAME = 'tasks_db';
 
@@ -38,11 +39,13 @@ export default function RootLayout() {
                 options={{ enableChangeListener: true }}
                 useSuspense>
                 <Provider store={store}>
-                    <Stack>
-                        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-                        <Stack.Screen name="+not-found" />
-                    </Stack>
+                    <GestureHandlerRootView>
+                        <Stack>
+                            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+                            <Stack.Screen name="+not-found" />
+                        </Stack>
+                    </GestureHandlerRootView>
                 </Provider>
             </SQLiteProvider>
         </Suspense>
