@@ -38,16 +38,14 @@ export default function Gestures() {
         })
         .onFinalize(() => {
             isPressed.value = false;
+            offset.value = { x: 0, y: 0 }
 
-            if (offset.value.y > 200)
-                offset.value.y = withTiming(400, undefined, () => {
-                    // runOnJS(() => {
-                    //     offset.value = withSpring({ x: 0, y: 0 });
-                    // });
-                    offset.value = { x: 0, y: 0 };
-                });
-            else
-                offset.value = withSpring({ x: 0, y: 0 });
+            // if (offset.value.y > 200) {
+            //     //offset.value.x = offset.value.x;
+            //     offset.value.y = withTiming(400, { duration: 200 });
+            // }
+            // else
+            //     offset.value = withSpring({ x: 0, y: 0 });
         });
 
     return (
