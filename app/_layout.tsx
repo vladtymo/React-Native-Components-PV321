@@ -4,7 +4,7 @@ import { Stack } from 'expo-router';
 import { openDatabaseSync, SQLiteProvider } from 'expo-sqlite';
 import migrations from '../drizzle/migrations';
 import { Suspense } from 'react';
-import { ActivityIndicator, Text } from 'react-native';
+import { ActivityIndicator, Button, LogBox, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { store } from './store';
