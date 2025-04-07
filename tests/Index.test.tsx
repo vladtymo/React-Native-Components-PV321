@@ -43,9 +43,9 @@ describe("ProductList", () => {
         });
     });
 
-    it("renders correctly", () => {
+    it("renders correctly", async () => {
         const { getByText } = render(<ProductList />);
-        waitFor(() => {
+        await waitFor(() => {
             expect(getByText("Product List")).toBeTruthy();
         })
     });
