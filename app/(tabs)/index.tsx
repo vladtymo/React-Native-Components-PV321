@@ -26,7 +26,6 @@ const Home = () => {
         await refreshItems();
 
         dispatch(setTitle(text));
-        dispatch(plus());
     }
     const refreshItems = async () => {
         const users = await db.select().from(tasksTable);

@@ -12,6 +12,12 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export const DATABASE_NAME = 'tasks_db';
 
+// if (!__DEV__) {
+console.log = () => { }; // Disable logs
+console.warn = () => { }; // Disable warnings
+console.error = () => { }; // Disable errors
+// }
+
 export default function RootLayout() {
     const expoDb = openDatabaseSync(DATABASE_NAME);
     const db = drizzle(expoDb);
