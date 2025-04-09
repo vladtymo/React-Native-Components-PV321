@@ -54,6 +54,10 @@ const service = {
                 body: 'Here is the notification body'
             },
             trigger: null // imediately
+            // trigger: {
+            //     type: SchedulableTriggerInputTypes.TIME_INTERVAL,
+            //     seconds: 4000
+            // },
         });
     },
     async notifyAfter(sec: number) {
@@ -99,13 +103,13 @@ const service = {
     },
 }
 
-export default function NotifyExample({ navigation, route }: Props) {
+export default function NotifyExample() {
     let lastNotificationId = "";
 
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Notification Example</Text>
-            <Button title='Nofity Now' onPress={() => service.notifyNow()} />
+            <Button title='Nofity Now' onPress={() => service.notifyNow()} testID='notifyNowBtn' />
             <Button title='Nofity after 5s' onPress={async () => lastNotificationId = await service.notifyAfter(5)} />
             <Button title='Nofity About Break' onPress={() => service.notifyAboutBreak()} />
             <Button title='Cancel' onPress={() => service.cancel(lastNotificationId)} />
