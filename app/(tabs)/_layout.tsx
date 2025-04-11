@@ -55,7 +55,7 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => <TabBarIcon name="info-circle" color={color} />,
                 }}
             />
-            <Tabs.Screen
+            {/* <Tabs.Screen
                 name="notify"
                 options={{
                     title: 'Notidy',
@@ -67,6 +67,13 @@ export default function TabLayout() {
                 options={{
                     title: 'Media',
                     tabBarIcon: ({ color }) => <TabBarIcon name="camera" color={color} />,
+                }}
+            /> */}
+            <Tabs.Screen
+                name="storage"
+                options={{
+                    title: 'Storage',
+                    tabBarIcon: ({ color }) => <TabBarIcon name="database" color={color} />,
                 }}
             />
         </Tabs>
